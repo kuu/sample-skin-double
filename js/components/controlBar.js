@@ -83,6 +83,10 @@ var ControlBar = React.createClass({
     this.props.controller.togglePlayPause();
   },
 
+  handleToggleSpeed: function() {
+    this.props.controller.toggleSpeed();
+  },
+
   handleShareClick: function() {
     this.props.controller.toggleShareScreen();
   },
@@ -167,6 +171,13 @@ var ControlBar = React.createClass({
       playIcon = "play";
     }
 
+    var speedIcon = "";
+    if (this.props.controller.state.speedState === CONSTANTS.STATE.HIGH_SPEED) {
+      speedIcon = "highSpeed";
+    } else {
+      speedIcon = "normalSpeed";
+    }
+
     var volumeIcon = (this.props.controller.state.volumeState.muted ? "volumeOff" : "volume");
 
     var fullscreenIcon = "";
@@ -237,6 +248,12 @@ var ControlBar = React.createClass({
     var controlItemTemplates = {
       "playPause": <button className="oo-play-pause oo-control-bar-item" onClick={this.handlePlayClick} key="playPause">
         <Icon {...this.props} icon={playIcon}
+          style={dynamicStyles.iconCharacter}
+          onMouseOver={this.highlight} onMouseOut={this.removeHighlight}/>
+      </button>,
+
+      "toggleSpeed": <button className="oo-toggle-speed oo-control-bar-item" onClick={this.handleToggleSpeed} key="toggleSpeed">
+        <Icon {...this.props} icon={speedIcon}
           style={dynamicStyles.iconCharacter}
           onMouseOver={this.highlight} onMouseOut={this.removeHighlight}/>
       </button>,

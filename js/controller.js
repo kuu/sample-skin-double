@@ -31,6 +31,7 @@ OO.plugin("Html5Skin", function (OO, _, $, W) {
       "authorization": {},
       "screenToShow": null,
       "playerState": null,
+      "speedState": null,
       "discoveryData": null,
       "isPlayingAd": false,
       "adOverlayUrl": null,
@@ -392,6 +393,7 @@ OO.plugin("Html5Skin", function (OO, _, $, W) {
         this.state.pauseAnimationDisabled = false;
         this.state.screenToShow = CONSTANTS.SCREEN.PLAYING_SCREEN;
         this.state.playerState = CONSTANTS.STATE.PLAYING;
+        this.state.speedState = CONSTANTS.STATE.NORMAL_SPEED;
         this.setClosedCaptionsLanguage();
         this.state.mainVideoElement.removeClass('oo-blur');
         this.state.isInitialPlay = false;
@@ -994,6 +996,19 @@ OO.plugin("Html5Skin", function (OO, _, $, W) {
           this.mb.publish(OO.EVENTS.PAUSE);
           break;
       }
+    },
+
+    toggleSpeed: function() {
+      if (this.state.speedState === CONSTANTS.STATE.HIGH_SPEED) {
+        console.log('STATE.NORMAL_SPEED');
+        document.querySelector('video').playbackRate = 1;
+        this.state.speedState = CONSTANTS.STATE.NORMAL_SPEED;
+      } else if (this.state.speedState === CONSTANTS.STATE.NORMAL_SPEED) {
+        console.log('STATE.HIGH_SPEED');
+        document.querySelector('video').playbackRate = 2;
+        this.state.speedState = CONSTANTS.STATE.HIGH_SPEED;
+      }
+      this.renderSkin();
     },
 
     seek: function(seconds) {
