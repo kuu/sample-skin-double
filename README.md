@@ -1,10 +1,11 @@
 # sample-skin-double
 
-A sample app to demonstrate the "double-speed" playback.
+A sample custom skin for demonstrating the "double-speed" playback.
+This was converted from [the default skin](https://github.com/ooyala/html5-skin)
 
 ## Usage
 
-Load the following files from you app.
+Load the following files from your app.
 * build/html5-skin.js
 * build/html5-skin.css
 * build/skin.json
@@ -23,4 +24,4 @@ $ npm install
 $ npm run build
 $ npm start
 ```
-Browser automatically starts and opens up http://0.0.0.0:4444
+Your browser automatically starts and opens up http://0.0.0.0:4444
